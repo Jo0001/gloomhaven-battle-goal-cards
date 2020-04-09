@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="mainScreen" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.jo0001.gloomhaven.battleGoalCards.core.Controller">
+    <center>
+        <AnchorPane prefHeight="-1.0" prefWidth="-1.0">
+            <children>
+                <Button fx:id="btn" layoutX="120.0" layoutY="367.0" mnemonicParsing="false" text="Für alle Anzeigen" />
+                <AnchorPane fx:id="card1" layoutX="20.0" layoutY="22.0" prefHeight="285.0" prefWidth="200.0" styleClass="side1">
+                    <children>
+                        <Label fx:id="title1" layoutX="2.0" layoutY="54.0" prefHeight="17.0" prefWidth="197.0" text="Title" />
+                        <Label fx:id="desc1" layoutX="39.0" layoutY="69.0" prefHeight="163.0" prefWidth="125.0" text="description" />
+                        <Label fx:id="checks1" layoutX="77.0" layoutY="229.0" text="checks" />
+                        <Label fx:id="id1" layoutX="77.0" layoutY="263.0" text="id" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="card2" layoutX="274.0" layoutY="22.0" prefHeight="285.0" prefWidth="200.0" styleClass="side1">
+                    <children>
+                        <Label fx:id="title2" layoutX="3.0" layoutY="54.0" prefHeight="17.0" prefWidth="197.0" text="Title" textAlignment="CENTER" />
+                        <Label fx:id="desc2" layoutX="41.0" layoutY="69.0" prefHeight="163.0" prefWidth="125.0" text="description" />
+                        <Label fx:id="checks2" layoutX="77.0" layoutY="229.0" text="checks" />
+                        <Label fx:id="id2" layoutX="77.0" layoutY="263.0" text="id" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </center>
+    <top>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Settings">
+                    <items>
+                        <MenuItem fx:id="connect" mnemonicParsing="false" text="Connect" />
+                        <MenuItem fx:id="resetbtn" mnemonicParsing="false" text="Reset" />
+                        <MenuItem fx:id="manageServerBtn" mnemonicParsing="false" text="Start server" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>
