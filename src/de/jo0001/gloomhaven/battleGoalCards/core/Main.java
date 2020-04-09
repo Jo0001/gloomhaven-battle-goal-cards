@@ -16,7 +16,7 @@ public class Main extends Application {
         Controller controller = loader.getController();
         loader.setController(controller);
         Parent root = loader.load(getClass().getResource("/mainUI.fxml"));
-        primaryStage.setTitle("Gloomhaven Battle Goal Cards    - v1.1");
+        primaryStage.setTitle("Gloomhaven Battle Goal Cards  v1.2Dev");
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo.png")));
         Scene s = new Scene(root, 500, 500);
         s.setCursor(Cursor.HAND);

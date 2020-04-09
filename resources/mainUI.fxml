@@ -40,6 +40,9 @@
                         <MenuItem fx:id="manageServerBtn" mnemonicParsing="false" text="Start server" />
                     </items>
                 </Menu>
+                <Menu  mnemonicParsing="false" text="About">
+                    <MenuItem fx:id="helpBtn" mnemonicParsing="false" text="Info &amp; Help"/>
+                </Menu>
             </menus>
         </MenuBar>
     </top>

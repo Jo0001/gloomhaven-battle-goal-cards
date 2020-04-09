@@ -7,11 +7,18 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -34,6 +41,8 @@ public class Controller implements Initializable {
     public Label id1;
     @FXML
     public Label id2;
+    @FXML
+    MenuItem helpBtn;
     @FXML
     MenuItem manageServerBtn;
     @FXML
@@ -101,6 +110,17 @@ public class Controller implements Initializable {
                 mangeServer(actionEvent);
             }
         });
+        helpBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    Desktop.getDesktop().browse(URI.create("https://github.com/Jo0001/gloomhavenh-battle-goal-cards"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         card1.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> cardClicked(card1));
         card2.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> cardClicked(card2));
 
@@ -208,7 +228,6 @@ public class Controller implements Initializable {
         client = new Client(host, port, this);
         client.start();
     }
-
 
     private void alert(String title, String mes, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);

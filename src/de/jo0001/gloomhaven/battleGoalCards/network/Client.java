@@ -70,16 +70,12 @@ public class Client extends Thread {
             client = new Socket(host, port);
             System.out.println("Client running");
             DataInputStream inputStream = new DataInputStream(client.getInputStream());
-            System.out.println("InputStream ready");
             String[] tmpIn = inputStream.readUTF().split(",");
             int id1 = Integer.parseInt(tmpIn[0]), id2 = Integer.parseInt(tmpIn[1]);
-            System.out.println("Got Ids");
 
             for (Card card : cards) {
-
                 if (card.getId() == id1) {
                     Platform.runLater(() -> {
-                        System.out.println("Later-Card1");
                         controller.title1.setText(card.getTitle());
                         controller.desc1.setText(card.getDescription());
                         controller.checks1.setText((card.getChecks() == 2) ? "✔✔" : "✔");
@@ -88,7 +84,6 @@ public class Client extends Thread {
                 }
                 if (card.getId() == id2) {
                     Platform.runLater(() -> {
-                        System.out.println("Later-Card2");
                         controller.title2.setText(card.getTitle());
                         controller.desc2.setText(card.getDescription());
                         controller.checks2.setText((card.getChecks() == 2) ? "✔✔" : "✔");
