@@ -2,6 +2,8 @@ package de.jo0001.gloomhaven.battleGoalCards.core;
 
 import de.jo0001.gloomhaven.battleGoalCards.network.Client;
 import de.jo0001.gloomhaven.battleGoalCards.network.Server;
+import de.jo0001.gloomhaven.battleGoalCards.other.DataHolder;
+import de.jo0001.gloomhaven.battleGoalCards.other.DataManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -60,7 +62,7 @@ public class Controller implements Initializable {
     public boolean connected = false;
     private Client client;
     private int port = 58889;
-    private String host = null;
+    private String host = "localhost";
 
     public Controller() {
         //@FXML-Fields are not initialized
@@ -126,10 +128,11 @@ public class Controller implements Initializable {
 
         desc1.setWrapText(true);
         desc2.setWrapText(true);
+
     }
 
     private void mangeServer(ActionEvent actionEvent) {
-        TextInputDialog dialog = new TextInputDialog("58889");
+        TextInputDialog dialog = new TextInputDialog(String.valueOf(port));
         dialog.setTitle("Start a server");
         dialog.setHeaderText(null);
         dialog.setContentText("Port");
@@ -201,10 +204,15 @@ public class Controller implements Initializable {
     }
 
     private void prompt(ActionEvent buttonEvent) {
-        TextInputDialog dialog = new TextInputDialog("localhost:58889");
-        dialog.setTitle("Settings");
+        if (DataManager.readData() != null) {
+            DataHolder dataHolder = DataManager.readData();
+            this.host = dataHolder.getHost();
+            this.port = dataHolder.getPort();
+        }
+        TextInputDialog dialog = new TextInputDialog(host + ":" + port);
+        dialog.setTitle("Connect to a server");
         dialog.setHeaderText(null);
-        dialog.setContentText("Enter ip & port");
+        dialog.setContentText("Enter ip:port");
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/logo.png")));
         Optional<String> result = dialog.showAndWait();
@@ -220,6 +228,7 @@ public class Controller implements Initializable {
             setUpClient(host, port);
             btn.setText("Für alle Anzeigen");
             connected = true;
+            DataManager.saveData(new DataHolder(host, port));
 
         }
     }

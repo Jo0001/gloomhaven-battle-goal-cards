@@ -1,10 +1,10 @@
 package de.jo0001.gloomhaven.battleGoalCards.other;
 
 public class Card {
-    private String title;
-    private String description;
-    private int checks;
-    private int id;
+    private final String title;
+    private final String description;
+    private final int checks;
+    private final int id;
 
     public Card(String title, String description, int checks, int id) {
         this.title = title;
