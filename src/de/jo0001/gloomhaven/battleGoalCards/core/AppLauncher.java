@@ -9,7 +9,7 @@ import java.io.*;
 public class AppLauncher {
 
     public static void main(String[] args) throws IOException {
-        if (args.length < 1&& false) {
+        if (args.length < 1) {
             String currentDir = System.getProperty("user.dir");
             String jar = new java.io.File(AppLauncher.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName().replaceAll("%20", " ");
             Runtime runtime = Runtime.getRuntime();
