@@ -210,7 +210,7 @@ public class Controller implements Initializable {
             this.port = dataHolder.getPort();
         }
         TextInputDialog dialog = new TextInputDialog(host + ":" + port);
-        dialog.setTitle("Connect to a server");
+        dialog.setTitle("Settings");
         dialog.setHeaderText(null);
         dialog.setContentText("Enter ip:port");
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();

@@ -1,6 +1,5 @@
 package de.jo0001.gloomhaven.battleGoalCards.core;
 
-import de.jo0001.gloomhaven.battleGoalCards.network.Client;
 import de.jo0001.gloomhaven.battleGoalCards.other.DataHolder;
 import de.jo0001.gloomhaven.battleGoalCards.other.DataManager;
 import javafx.application.Application;
@@ -10,7 +9,7 @@ import java.io.*;
 public class AppLauncher {
 
     public static void main(String[] args) throws IOException {
-        if (args.length < 1) {
+        if (args.length < 1&& false) {
             String currentDir = System.getProperty("user.dir");
             String jar = new java.io.File(AppLauncher.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName().replaceAll("%20", " ");
             Runtime runtime = Runtime.getRuntime();
