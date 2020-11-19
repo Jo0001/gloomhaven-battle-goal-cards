@@ -1,5 +1,6 @@
 package de.jo0001.gloomhaven.battleGoalCards.core;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRPC;
+import net.arikia.dev.drpc.DiscordRichPresence;
 
 import java.util.Date;
 
@@ -35,30 +37,27 @@ public class Main extends Application {
             DiscordRPC.discordShutdown();
         }));
 
-        initDiscord();
+        new Thread(() -> {
+            DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
+                Main.ready = true;
+                System.out.println("Welcome " + user.username + "#" + user.discriminator);
+                DiscordRichPresence.Builder presence = new DiscordRichPresence.Builder("");
+                Date date = new Date();
+                long timeMilli = date.getTime();
+                presence.setStartTimestamps(timeMilli);
+                presence.setBigImage("logo", "");
+                DiscordRPC.discordUpdatePresence(presence.build());
+            }).build();
+            DiscordRPC.discordInitialize("710170554543374377", handlers, false);
+            do {
+                DiscordRPC.discordRunCallbacks();
+            } while (!ready);
+        }).start();
         primaryStage.show();
-        System.out.println("Running callbacks...");
-        do {
-            DiscordRPC.discordRunCallbacks();
-        } while (!ready);
     }
 
     @Override
     public void stop() {
         System.exit(0);
-    }
-
-    private static void initDiscord() {
-        DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
-            Main.ready = true;
-            System.out.println("Welcome " + user.username + "#" + user.discriminator + ".");
-            net.arikia.dev.drpc.DiscordRichPresence.Builder presence = new net.arikia.dev.drpc.DiscordRichPresence.Builder("");
-            Date date = new Date();
-            long timeMilli = date.getTime();
-            presence.setStartTimestamps(timeMilli);
-            presence.setBigImage("logo", "");
-            DiscordRPC.discordUpdatePresence(presence.build());
-        }).build();
-        DiscordRPC.discordInitialize("710170554543374377", handlers, false);
     }
 }

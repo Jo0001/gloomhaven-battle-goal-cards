@@ -18,9 +18,9 @@ public class Client extends Thread {
     private boolean filled = false;
     private Socket client;
 
-    private String host;
-    private int port;
-    private Controller controller;
+    private final String host;
+    private final int port;
+    private final Controller controller;
 
     public Client(String host, int port, Controller controller) {
         this.host = host;
@@ -113,11 +113,11 @@ public class Client extends Thread {
             DataOutputStream output = new DataOutputStream(client.getOutputStream());
             System.out.println("OutputStream ready");
             output.writeUTF("getnumber");
+            output.flush();
             System.out.println("Send number request done");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
 }
