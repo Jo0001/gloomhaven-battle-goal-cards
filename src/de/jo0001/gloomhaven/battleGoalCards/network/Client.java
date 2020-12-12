@@ -97,7 +97,7 @@ public class Client extends Thread {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Verbindungsfehler");
                 alert.setHeaderText(null);
-                alert.setContentText("Es konnte keine Verbindung zu " + host + "unter Port " + port + " herstellen. Bitte versuche es erneut.");
+                alert.setContentText("Couldn't connect to " + host + " with port " + port + " Please try again");
                 Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
                 stage.getIcons().add(new Image(Client.class.getResourceAsStream("/logo.png")));
                 alert.showAndWait();

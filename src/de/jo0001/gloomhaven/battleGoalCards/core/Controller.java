@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.BindException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Optional;
@@ -76,7 +77,6 @@ public class Controller implements Initializable {
             resetCard(1);
             resetCard(2);
             //showSide(1);
-            client.getInfo();
             client.getInfo();
         }
     }
@@ -146,11 +146,13 @@ public class Controller implements Initializable {
                 startServer(tmpPort);
             } catch (NumberFormatException e) {
                 alert("Invalid port", "Port must contain only numbers. For example 58889", Alert.AlertType.ERROR);
+            } catch (BindException e) {
+                alert("Can't bind to port", "Can't bind to port. Already in use?", Alert.AlertType.ERROR);
             }
         }
     }
 
-    private void startServer(int tmpPort) {
+    private void startServer(int tmpPort) throws BindException {
         Server s = new Server(tmpPort);
         s.start();
     }
@@ -227,7 +229,6 @@ public class Controller implements Initializable {
             host = res[0];
             setUpClient(host, port);
             btn.setText("Für alle Anzeigen");
-            connected = true;
             DataManager.saveData(new DataHolder(host, port));
 
         }
@@ -236,6 +237,7 @@ public class Controller implements Initializable {
     private void setUpClient(String host, int port) {
         client = new Client(host, port, this);
         client.start();
+        connected = true;
     }
 
     private void alert(String title, String mes, Alert.AlertType alertType) {

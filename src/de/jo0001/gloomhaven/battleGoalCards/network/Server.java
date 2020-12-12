@@ -1,6 +1,7 @@
 package de.jo0001.gloomhaven.battleGoalCards.network;
 
 import java.io.*;
+import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -13,11 +14,13 @@ public class Server extends Thread {
     private static final List<Integer> usedIds = new ArrayList<>();
     private static final List<Socket> clients = new ArrayList<>();
 
-    public Server(int port) {
+    public Server(int port) throws BindException {
         try {
             serverSocket = new ServerSocket(port);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (BindException e) {
+            throw new BindException();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
     }
 
@@ -68,7 +71,7 @@ public class Server extends Thread {
     }
 
     //Just for Testing
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BindException {
         Server s = new Server(58889);
         s.runServer();
     }
@@ -101,7 +104,7 @@ class ServerThread extends Thread {
             try {
                 if (s != null) {
                     s.close();
-                    System.out.println(" Socket Closed");
+                    System.out.println("Socket Closed");
                 }
             } catch (IOException ignored) {
             }
