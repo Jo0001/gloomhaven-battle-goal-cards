@@ -1,6 +1,5 @@
 package de.jo0001.gloomhaven.battleGoalCards.core;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -59,5 +58,9 @@ public class Main extends Application {
     @Override
     public void stop() {
         System.exit(0);
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

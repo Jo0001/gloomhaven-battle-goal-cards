@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 
 <BorderPane fx:id="mainScreen" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.jo0001.gloomhaven.battleGoalCards.core.Controller">
@@ -49,7 +46,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="About">
                     <MenuItem fx:id="helpBtn" mnemonicParsing="false" text="Info &amp; Help"/>
-                    <MenuItem mnemonicParsing="false" text="Version: 2.0.0"/>
+                    <MenuItem mnemonicParsing="false" text="Version: 3.0.0"/>
                 </Menu>
             </menus>
         </MenuBar>
